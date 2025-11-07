@@ -1,0 +1,7 @@
+guaibaapp/
+├── components/
+│   └── NivelGuaibaScreen.js
+├── firebase.js
+├── App.js
+├── package.json
+└── .gitignore
