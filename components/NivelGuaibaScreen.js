@@ -9,14 +9,27 @@ import {
 import { database, ref, onValue } from "../firebase";
 import { styles } from "../styles/NivelGuaibaStyles";
 
+// Tela principal do aplicativo - exibe o nível do Rio Guaíba em tempo real
+// Componente funcional que gerencia estado de loading, dados e atualizações
+// Integra com Firebase para receber dados atualizados do backend
+
 const NivelGuaibaScreen = () => {
+  // Estado para armazenar os dados do Firebase
   const [dados, setDados] = useState(null);
+  // Estado para controlar o carregamento inicial
   const [loading, setLoading] = useState(true);
+  // Estado para controlar o refresh manual
   const [refreshing, setRefreshing] = useState(false);
 
+  // Efeito para configurar listener em tempo real do Firebase
+  // Escuta mudanças na referência raiz do banco de dados
+  // Atualiza o estado com novos dados e gerencia estados de loading
+
   useEffect(() => {
+    // Cria referência para o nó raiz do banco de dados
     const dbRef = ref(database, "/");
 
+    // Listener do Firebase - executa sempre que dados mudam
     const unsubscribe = onValue(
       dbRef,
       (snapshot) => {
@@ -33,15 +46,21 @@ const NivelGuaibaScreen = () => {
       }
     );
 
+    // Cleanup function - remove listener quando componente desmonta
     return () => unsubscribe();
   }, []);
 
+  // Handler para o gesto pull-to-refresh
+  // Ativa estado de refreshing e simula recarregamento
+
   const onRefresh = () => {
     setRefreshing(true);
+    // Timeout para simular recarregamento (em app real, recarregaria dados)
     setTimeout(() => setRefreshing(false), 1000);
   };
 
-  // Função para remover aspas dos textos do Firebase
+  // Remove aspas dos textos vindos do Firebase
+  // O Firebase adiciona aspas em alguns campos string
   const cleanText = (text) => {
     if (typeof text === "string") {
       return text.replace(/"/g, "");
@@ -49,6 +68,7 @@ const NivelGuaibaScreen = () => {
     return text;
   };
 
+  // Estado de loading - exibe spinner enquanto dados carregam
   if (loading) {
     return (
       <View style={styles.centerContainer}>
@@ -58,6 +78,9 @@ const NivelGuaibaScreen = () => {
     );
   }
 
+  // Renderização principal da tela
+  // ScrollView com refresh control para atualização manual
+  // Seções: cabeçalho, nível principal, informações e rodapé
   return (
     <ScrollView
       style={styles.container}
@@ -66,12 +89,12 @@ const NivelGuaibaScreen = () => {
       }
       showsVerticalScrollIndicator={false}
     >
-      {/* Cabeçalho */}
+      {/* Cabeçalho com título do aplicativo */}
       <View style={styles.header}>
         <Text style={styles.title}>NÍVEL DO RIO GUAÍBA</Text>
       </View>
 
-      {/* Nível principal */}
+      {/* Container principal com nível atual e timestamp */}
       <View style={styles.nivelContainer}>
         <Text style={styles.waveEmoji}>🌊</Text>
         <Text style={styles.nivel}>
@@ -82,7 +105,7 @@ const NivelGuaibaScreen = () => {
         </Text>
       </View>
 
-      {/* Informações das cotas */}
+      {/* Informações das cotas de alerta e inundação */}
       <View style={styles.infoContainer}>
         <Text style={styles.infoText}>{cleanText(dados?.labelCotaAlerta)}</Text>
         <Text style={styles.infoText}>
@@ -91,10 +114,10 @@ const NivelGuaibaScreen = () => {
         <Text style={styles.infoText}>{cleanText(dados?.labelEstacao)}</Text>
       </View>
 
-      {/* Separador */}
+      {/* Separador visual entre seções */}
       <View style={styles.separator} />
 
-      {/* Rodapé */}
+      {/* Rodapé com informações de fonte e versão */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>
           Fonte: https://www.ana.gov.br/ (SNIRH/ANA)
