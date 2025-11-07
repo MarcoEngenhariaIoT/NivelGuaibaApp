@@ -1,7 +1,24 @@
-guaibaapp/
+NIVELGUAIBAAPP/
+├── .expo/
+├── assets/
+│   ├── adaptive-icon.png
+│   ├── favicon.png
+│   ├── icon.png
+│   └── splash-icon.png
 ├── components/
 │   └── NivelGuaibaScreen.js
-├── firebase.js
+├── node_modules/
+├── styles/
+│   └── NivelGuaibaStyles.js
+├── .gitignore
 ├── App.js
+├── app.json
+├── estrutura.txt
+├── firebase.js
+├── gualba-ddf2d-firebase-adminsdk-... (arquivo de configuração Firebase)
+├── index.js
+├── LICENSE
+├── package-lock.json
 ├── package.json
-└── .gitignore
+├── README.md
+└── tsconfig.json

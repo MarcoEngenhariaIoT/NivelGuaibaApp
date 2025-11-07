@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
-  StyleSheet,
   ScrollView,
   ActivityIndicator,
   RefreshControl,
 } from "react-native";
 import { database, ref, onValue } from "../firebase";
+import { styles } from "../styles/NivelGuaibaStyles";
 
 const NivelGuaibaScreen = () => {
   const [dados, setDados] = useState(null);
@@ -21,7 +21,7 @@ const NivelGuaibaScreen = () => {
       dbRef,
       (snapshot) => {
         const data = snapshot.val();
-        console.log("Dados recebidos:", data); // Para debug
+        console.log("Dados recebidos:", data);
         setDados(data);
         setLoading(false);
         setRefreshing(false);
@@ -64,6 +64,7 @@ const NivelGuaibaScreen = () => {
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
+      showsVerticalScrollIndicator={false}
     >
       {/* Cabeçalho */}
       <View style={styles.header}>
@@ -72,6 +73,7 @@ const NivelGuaibaScreen = () => {
 
       {/* Nível principal */}
       <View style={styles.nivelContainer}>
+        <Text style={styles.waveEmoji}>🌊</Text>
         <Text style={styles.nivel}>
           {dados?.nivel ? `${dados.nivel.toFixed(2)}m` : "--.--m"}
         </Text>
@@ -104,90 +106,5 @@ const NivelGuaibaScreen = () => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  centerContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-    padding: 20,
-  },
-  header: {
-    backgroundColor: "#1e40af",
-    paddingVertical: 20,
-    alignItems: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#fff",
-    textAlign: "center",
-  },
-  nivelContainer: {
-    alignItems: "center",
-    paddingVertical: 30,
-    backgroundColor: "#f8fafc",
-  },
-  nivel: {
-    fontSize: 48,
-    fontWeight: "bold",
-    color: "#1e40af",
-    marginBottom: 10,
-  },
-  timestamp: {
-    fontSize: 16,
-    color: "#64748b",
-  },
-  infoContainer: {
-    padding: 20,
-    alignItems: "center",
-  },
-  infoText: {
-    fontSize: 16,
-    color: "#374151",
-    marginBottom: 8,
-    textAlign: "center",
-  },
-  separator: {
-    height: 1,
-    backgroundColor: "#e5e7eb",
-    marginHorizontal: 20,
-    marginVertical: 10,
-  },
-  footer: {
-    padding: 20,
-    alignItems: "center",
-  },
-  footerText: {
-    fontSize: 14,
-    color: "#6b7280",
-    textAlign: "center",
-    marginBottom: 8,
-  },
-  version: {
-    fontSize: 14,
-    color: "#374151",
-    fontWeight: "500",
-    marginTop: 10,
-    marginBottom: 15,
-  },
-  disclaimer: {
-    fontSize: 12,
-    color: "#9ca3af",
-    textAlign: "center",
-    lineHeight: 16,
-    fontStyle: "italic",
-  },
-  loadingText: {
-    marginTop: 10,
-    fontSize: 16,
-    color: "#64748b",
-  },
-});
 
 export default NivelGuaibaScreen;

@@ -1,13 +1,15 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
-import NivelGuaibaScreen from './components/NivelGuaibaScreen';
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import NivelGuaibaScreen from "./components/NivelGuaibaScreen";
 
 export default function App() {
   return (
-    <View style={{ flex: 1 }}>
-      <StatusBar style="auto" />
-      <NivelGuaibaScreen />
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1 }} edges={["top", "bottom"]}>
+        <StatusBar style="auto" />
+        <NivelGuaibaScreen />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
