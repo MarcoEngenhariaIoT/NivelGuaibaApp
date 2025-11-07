@@ -10,13 +10,13 @@ Sistema completo de monitoramento do nível do Rio Guaíba em tempo real, compos
 ## Arquitetura do Sistema
 
 ```
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   API ANA       │───▶│   Backend Python  │───▶│   Firebase      │
-│   (Fonte dados) │    │   (apiANA.py)     │    │   (Realtime DB) │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
+┌─────────────────┐    ┌──────────────────┐     ┌─────────────────┐
+│   API ANA       │───▶│  Backend Python  │───▶│   Firebase      │
+│   (Fonte dados) │    │   (apiANA.py)    │     │   (Realtime DB) │
+└─────────────────┘    └──────────────────┘     └─────────────────┘
                                                        │
-┌─────────────────┐                                  │
-│   App Mobile    │◀─────────────────────────────────┘
+┌─────────────────┐                                    │
+│   App Mobile    │◀───────────────────────────────────┘
 │   (React Native)│
 └─────────────────┘
 ```
