@@ -1,4 +1,8 @@
-# NivelGuaibaApp
+# Nível do Rio Guaiba
+
+<div align="center" >
+<img src="PrintMotoG.jpg" alt="Print do App" width="35%" align="center" style="display: block; margin: auto ;" />
+</div>
 
 ## Descrição do Projeto
 
