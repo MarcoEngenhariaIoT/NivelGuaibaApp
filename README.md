@@ -1,4 +1,8 @@
-# NivelGuaibaApp
+# Nível do Rio Guaiba
+
+<div align="center" >
+<img src="PrintMotoG.jpg" alt="Print do App" width="35%" align="center" style="display: block; margin: auto ;" />
+</div>
 
 ## Descrição do Projeto
 
@@ -267,3 +271,18 @@ Sistema: Versão 2.1.1
 ---
 
 **Nota**: Este projeto tem caráter educacional e experimental, servindo como demonstração de integração entre sistemas de monitoramento ambiental e aplicações móveis.
+
+---
+---
+
+# Novidade
+
+Está em pleno desenvolvimento a versão comercial do novo app **Nível do Rio Guaíba**.  
+Em breve estará disponível nas lojas de aplicativos de forma gratuita.
+
+<div align="center">
+  <img src="PrintNovoApp.jpg" alt="Print do App" width="35%" />
+</div>
+
+**Licença do Logotipo**: From Flaticon - By Andinur - licence-221277142-18592064
+`
